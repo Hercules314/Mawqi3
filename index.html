@@ -1,101 +1,913 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="mstyle.css">
+    <meta name="description" content="موقع - تصميم مواقع بورتفوليو احترافية تعكس مهاراتك وتميزك">
+    <title>موقع - تصميم مواقع بورتفوليو احترافية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Tajawal:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
 
-    <title>MAWQI3 موقع</title>
+        :root {
+            --primary-color: #2A0944;
+            --accent-color: #3B185F;
+            --highlight: #A12568;
+            --text-color: #333;
+            --text-light: #f8f9fa;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background: var(--text-light);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* 3D Background Effect */
+        .three-d-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.08;
+            pointer-events: none;
+        }
+
+        /* Skip to Content Link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            transition: var(--transition);
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Mobile-First Navigation */
+        .nav-bar {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Cairo', sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 1rem 5%;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .nav-links.active {
+            display: flex;
+        }
+
+        .nav-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover {
+            color: var(--highlight);
+            border-bottom: 2px solid var(--highlight);
+        }
+
+        .menu-toggle {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: var(--text-light);
+            padding: 7rem 5% 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 L0,100 Z"></path></svg>');
+            background-size: cover;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Cairo', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Mobile-Optimized Sections */
+        .section {
+            padding: 4rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            position: relative;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--highlight);
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Prototypes Grid */
+        .prototypes-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .prototype-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+            will-change: transform;
+        }
+
+        .prototype-card:hover {
+            transform: perspective(1000px) rotateY(-5deg) rotateX(5deg) translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .prototype-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-content h3 {
+            font-family: 'Cairo', sans-serif;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-content p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Why Buy Section */
+        .benefits-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .benefit-card i {
+            color: var(--highlight);
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+        }
+
+        .benefit-card h3 {
+            font-family: 'Cairo', sans-serif;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 3rem;
+            border-radius: 15px;
+            margin: 3rem auto;
+            max-width: 1000px;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-info i {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.9);
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+        }
+
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            background: var(--highlight);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .contact-form button:hover {
+            background: #c12b7a;
+            transform: translateY(-3px);
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-flex;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, var(--highlight), #FF8C32);
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 2rem 0;
+            transition: var(--transition);
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Cairo', sans-serif;
+            box-shadow: 0 5px 15px rgba(161, 37, 104, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 8px 20px rgba(161, 37, 104, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 3rem 5%;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .social-links a:hover {
+            background: var(--highlight);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            opacity: 0.8;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .menu-toggle {
+                display: none;
+            }
+
+            .nav-links {
+                display: flex;
+                position: static;
+                background: transparent;
+                box-shadow: none;
+                flex-direction: row;
+                gap: 2rem;
+                padding: 0;
+            }
+
+            .hero {
+                padding: 9rem 5% 6rem;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .prototypes-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .benefits-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .prototypes-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+
+            .prototype-card:hover,
+            .benefit-card:hover,
+            .cta-button:hover,
+            .contact-form button:hover,
+            .social-links a:hover {
+                transform: none !important;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
 
-    <nav>
-        <div class="logo">Mawqi3</div>
-        <ul class="nav-links">
-            <li><a href="#home">الرئيسية</a></li>
-            <li><a href="#about">من نحن</a></li>
-            <li><a href="#projects">نماذج</a></li>
-            <li><a href="#contact">تواصل</a></li>
-        </ul>
-        <div class="hamburger">&#9776;</div>
+    <!-- Skip to Content Link -->
+    <a href="#main-content" class="skip-link">تخطي إلى المحتوى الرئيسي</a>
+
+    <!-- 3D Background Container -->
+    <div class="three-d-bg" id="threejs-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-content">
+            <a href="#" class="logo">موقع</a>
+            <button class="menu-toggle" aria-label="قائمة التنقل" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="#about">من نحن</a>
+                <a href="#prototypes">النماذج</a>
+                <a href="#why">لماذا بورتفوليو؟</a>
+                <a href="#contact">اتصل بنا</a>
+            </div>
+        </div>
     </nav>
 
-    <section id="home">
-        <div class="hero-content">
-            <h1>إمتلك موقعك الإلكتروني الان<span></span></h1>
-            <p>Your portfolio Website is a few steps away</p>
-            <a href="#projects" class="btn">إطلع على أمثلة </a>
-        </div>
-    </section>
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>صمم حضورك الرقمي باحترافية</h1>
+                <p>مواقع بورتفوليو مخصصة تعكس هويتك الفريدة وتبرز إنجازاتك بشكل مميز</p>
+                <a href="#prototypes" class="cta-button">شاهد نماذجنا <i class="fas fa-arrow-down"></i></a>
+            </div>
+        </section>
 
-    <section id="about">
-        <h2>من نحن</h2>
-        <p>في موقع نحن هنا لخدمتك وتقديم تصميم موقعك الشخصي في سرعة قياسية 
-            <br>قم بالطلب عبر بوابة سلة وتواصل مع المهندس مباشرة لتفصيل موقعك 
+        <!-- About Section -->
+        <section id="about" class="section">
+            <h2 class="section-title">من نحن</h2>
+            <p class="about-text">
+                نحن في "موقع" نخصص خبرتنا في تصميم مواقع بورتفوليو احترافية تعكس مهاراتك وتميزك في مجالك. نؤمن بأن كل محترف يستحق موقعاً يليق بإنجازاته، لذلك نقدم حلولاً تصميمية مخصصة تدمج بين الجمال البصري وسهولة الاستخدام لإنشاء حضور رقمي مميز لعملائنا. فريقنا من المصممين والمطورين يعملون معك خطوة بخطوة لتحقيق الرؤية التي تريدها.
+            </p>
+        </section>
+
+        <!-- Prototypes Section -->
+        <section id="prototypes" class="section">
+            <h2 class="section-title">نماذج أعمالنا</h2>
+            <div class="prototypes-grid">
+                <!-- Prototype 1 -->
+                <div class="prototype-card floating-card">
+                    <img src="p2.png" alt="نموذج بورتفوليو مبدع" class="prototype-img">
+                    <div class="card-content">
+                        <h3>تصميم مبدع</h3>
+                        <p>تصميم عصري مع تأثيرات بصرية جذابة تناسب المبدعين والفنانين</p>
+                    </div>
+                </div>
+                
+                <!-- Prototype 2 -->
+                <div class="prototype-card floating-card">
+                    <img src="p3.png" alt="نموذج بورتفوليو احترافي" class="prototype-img">
+                    <div class="card-content">
+                        <h3>تصميم احترافي</h3>
+                        <p>تصميم أنيق ومنظم يناسب المحترفين في مختلف المجالات</p>
+                    </div>
+                </div>
+                
+                <!-- Prototype 3 -->
+                <div class="prototype-card floating-card">
+                    <img src="dentist.png" alt="نموذج بورتفوليو تفاعلي" class="prototype-img">
+                    <div class="card-content">
+                        <h3>تصميم لطبيب أسنان</h3>
+                        <p>تجربة مستخدم غنية مع عناصر تفاعلية لجذب الزوار</p>
+                    </div>
+                </div>
+                
+                <!-- Prototype 4 -->
+                <div class="prototype-card floating-card">
+                    <img src="n2.png" alt="نموذج بورتفوليو بسيط" class="prototype-img">
+                    <div class="card-content">
+                        <h3>تصميم بسيط</h3>
+                        <p>تصميم نظيف ومركز على المحتوى بدون تعقيدات</p>
+                    </div>
+                </div>
+                
+                <!-- Prototype 5 -->
+                <div class="prototype-card floating-card">
+                    <img src="p4.png" alt="نموذج بورتفوليو شخصي" class="prototype-img">
+                    <div class="card-content">
+                        <h3>تصميم شخصي</h3>
+                        <p>تصميم يعكس شخصيتك الفريدة بأسلوب مميز</p>
+                    </div>
+                </div>
+                
+                <!-- Prototype 6 -->
+                <div class="prototype-card floating-card">
+                    <img src="p5.png" alt="نموذج بورتفوليو متعدد الأقسام" class="prototype-img">
+                    <div class="card-content">
+                        <h3>تصميم متكامل</h3>
+                        <p>موقع شامل بأقسام متعددة لعرض مختلف جوانب عملك</p>
+                    </div>
+                </div>
+                <!-- Prototype 7 -->
+                <div class="prototype-card floating-card">
+                    <img src="girl.png" alt="نموذج بورتفوليو متعدد الأقسام" class="prototype-img">
+                    <div class="card-content">
+                        <h3> تصميم أنثوي </h3>
+                        <p>موقع شامل بأقسام متعددة لعرض مختلف جوانب عملك</p>
+                    </div>
+                </div>
+                <!-- Prototype 8 -->
+                <div class="prototype-card floating-card">
+                    <img src="graphic.png" alt="نموذج بورتفوليو متعدد الأقسام" class="prototype-img">
+                    <div class="card-content">
+                        <h3>تصميم متكامل</h3>
+                        <p>موقع خاص لمصمم جرافيك</p>
+                    </div>
+                </div>
+                <!-- Prototype 9 -->
+                <div class="prototype-card floating-card">
+                    <img src="normal.png" alt="نموذج بورتفوليو متعدد الأقسام" class="prototype-img">
+                    <div class="card-content">
+                        <h3>تصميم سلس</h3>
+                        <p>موقع سلس ومريح للعين</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Section -->
+        <section id="why" class="section">
+            <h2 class="section-title">لماذا تحتاج بورتفوليو إلكتروني؟</h2>
+            <div class="benefits-container">
+                <div class="benefit-card">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>عرض أعمالك بشكل احترافي</h3>
+                    <p>قدم مهاراتك ومشاريعك بأفضل صورة ممكنة لعملاء محتملين</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>زيادة فرصك الوظيفية</h3>
+                    <p>87% من أصحاب العمل يفضلون المرشحين الذين يمتلكون بورتفوليو رقمي</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <i class="fas fa-globe"></i>
+                    <h3>وصول عالمي</h3>
+                    <p>عرض أعمالك لجمهور عالمي على مدار الساعة</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>تميز عن المنافسين</h3>
+                    <p>إبراز شخصيتك المهنية بشكل مميز يجعلك الأفضل في مجالك</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>توفير الوقت</h3>
+                    <p>شارك رابط واحد يحتوي على كل أعمالك بدل إرسال ملفات متعددة</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <i class="fas fa-wallet"></i>
+                    <h3>زيادة دخلك</h3>
+                    <p>91% من المستقلين يحصلون على عملاء أكثر بعد إنشاء بورتفوليو</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <h2 class="section-title" style="color: white;">تواصل معنا</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <p><i class="fas fa-phone"></i> +966 50 555 6614</p>
+                    <p><i class="fas fa-envelope"></i> ahmedsameh2000.ah@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> مكة المكرمة، المملكة العربية السعودية </p>
+                    <p><i class="fas fa-clock"></i> الأحد - الخميس: 9 ص - 5 م</p>
+                </div>
+                <form class="contact-form">
+                    <input type="text" placeholder="الاسم الكامل" required>
+                    <input type="email" placeholder="البريد الإلكتروني" required>
+                    <input type="tel" placeholder="رقم الجوال (اختياري)">
+                    <textarea placeholder="كيف يمكننا مساعدتك؟" required></textarea>
+                    <button type="submit">إرسال الرسالة</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- SALA Shop Section -->
+        <section class="section text-center">
+            <h2 class="section-title">تصفح خدماتنا في سلة</h2>
+            <p>يمكنك الآن طلب تصميم بورتفوليو مخصص مباشرة من خلال متجرنا في منصة سلة</p>
+            <a href="https://salla.sa/MAWQI3" class="cta-button" target="_blank" rel="noopener">
+                انتقل إلى المتجر <i class="fas fa-external-link-alt"></i>
+            </a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <a href="#" class="logo" style="color: white;">موقع</a>
+            <div class="social-links">
+                <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="سناب شات"><i class="fab fa-snapchat"></i></a>
+                <a href="#" aria-label="واتساب"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p class="copyright">© 2025 موقع. جميع الحقوق محفوظة</p>
+        </div>
+    </footer>
+
+    <script>
+        // Wait for everything to load
+        window.addEventListener('load', function() {
+            // Hide loading screen
+            setTimeout(function() {
+                document.getElementById('loading').classList.add('hidden');
+            }, 500);
             
-        </p>
-    </section>
-
-    
-
-    <!-- Projects Section -->
-    <section id="projects">
-        <h2>نماذج</h2>
-        <div class="projects-container">
-            <div class="project">
-                <h3>نموذج</h3>
+            // Mobile Menu Toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            
+            menuToggle.addEventListener('click', function() {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !isExpanded);
+                navLinks.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Initialize Three.js 3D Background
+            if (window.THREE) {
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                const renderer = new THREE.WebGLRenderer({
+                    alpha: true,
+                    antialias: true
+                });
                 
-                    <img src="e1.png" id="pi" alt="">
-            </div>
-            <div class="project">
-                <h3>نموذج</h3>
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                document.getElementById('threejs-bg').appendChild(renderer.domElement);
                 
-                    <img src="e2.png" id="pi" alt="">
-            </div>
-            <div class="project">
-                <h3>نموذج</h3>
+                // Add floating shapes
+                const shapes = [];
+                const geometryTypes = [
+                    new THREE.IcosahedronGeometry(1.5, 0),
+                    new THREE.OctahedronGeometry(1.8, 0),
+                    new THREE.TetrahedronGeometry(1.3, 0)
+                ];
                 
-                <img src="e3.png" id="pi" alt="">
-            </div>
-            <div class="project">
-                <h3>نموذج</h3>
+                for (let i = 0; i < 12; i++) {
+                    const geometry = geometryTypes[Math.floor(Math.random() * geometryTypes.length)];
+                    const material = new THREE.MeshPhongMaterial({
+                        color: Math.random() > 0.5 ? 0x3B185F : 0xA12568,
+                        transparent: true,
+                        opacity: 0.15,
+                        shininess: 50
+                    });
+                    
+                    const mesh = new THREE.Mesh(geometry, material);
+                    
+                    // Random position
+                    mesh.position.set(
+                        Math.random() * 40 - 20,
+                        Math.random() * 40 - 20,
+                        Math.random() * 40 - 20
+                    );
+                    
+                    // Random rotation
+                    mesh.rotation.set(
+                        Math.random() * Math.PI,
+                        Math.random() * Math.PI,
+                        Math.random() * Math.PI
+                    );
+                    
+                    // Store animation properties
+                    mesh.userData = {
+                        speed: Math.random() * 0.002 + 0.001,
+                        rotationSpeed: Math.random() * 0.01 + 0.005,
+                        direction: new THREE.Vector3(
+                            Math.random() * 0.02 - 0.01,
+                            Math.random() * 0.02 - 0.01,
+                            Math.random() * 0.02 - 0.01
+                        ).normalize()
+                    };
+                    
+                    scene.add(mesh);
+                    shapes.push(mesh);
+                }
                 
-                    <img src="e4.png" id="pi" alt="">
-            </div>
-        </div>
-    </section>
-
-
-    <section id="features">
-
-      <h1>لمذا نحن</h1>  
-      <p>
-       كلنا شغف ✨ <br> سعرنا مميز 💯 <br> سرعة قياسية ✅ <br> دعم متواصل ✅ <br> إمكانية تحديث الموقع ✅ 
-      </p>
-    </section>
-
-    <section id="features">
-
-         
-        <p>
-            يُعد وجود موقع ويب خاص يعرض أعمالك ومهاراتك أمرًا بالغ الأهمية للعثور على وظيفة،
-             حيث إنه بمثابة بطاقة هوية رقمية تبرز خبراتك ومشاريعك السابقة بشكل احترافي. يُمكن هذا الموقع أصحاب العمل من تقييم قدراتك بطريقة سريعة وفعّالة، 
-            كما يُبرز شغفك واحترافيتك في مجالك. بالإضافة إلى ذلك، يعمل الموقع كمنصة لإظهار تميزك عن باقي المرشحين ويُعزز من فرصك في
-             الحصول على مقابلات عمل، مما يجعله أداة تسويقية ضرورية لبناء سمعتك المهنية وتحقيق النجاح الوظيفي.
-        </p>
-      </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2>Contact Me on salla</h2>
-        <p>نسعد بتواصلكم عبر منصة سلة</p>
-        <p></p>
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-        </div>
-    </section>
-
-    
+                // Add subtle lighting
+                const ambientLight = new THREE.AmbientLight(0x404040);
+                scene.add(ambientLight);
+                
+                const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+                directionalLight.position.set(1, 1, 1);
+                scene.add(directionalLight);
+                
+                camera.position.z = 30;
+                
+                // Animation
+                function animate() {
+                    requestAnimationFrame(animate);
+                    
+                    shapes.forEach(mesh => {
+                        // Rotate
+                        mesh.rotation.x += mesh.userData.rotationSpeed;
+                        mesh.rotation.y += mesh.userData.rotationSpeed * 0.7;
+                        
+                        // Float movement
+                        mesh.position.x += mesh.userData.direction.x * mesh.userData.speed * 10;
+                        mesh.position.y += mesh.userData.direction.y * mesh.userData.speed * 10;
+                        mesh.position.z += mesh.userData.direction.z * mesh.userData.speed * 10;
+                        
+                        // Bounce off imaginary walls
+                        ['x', 'y', 'z'].forEach(axis => {
+                            if (Math.abs(mesh.position[axis]) > 25) {
+                                mesh.userData.direction[axis] *= -1;
+                            }
+                        });
+                    });
+                    
+                    renderer.render(scene, camera);
+                }
+                
+                // Handle window resize
+                function onWindowResize() {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                }
+                
+                window.addEventListener('resize', onWindowResize);
+                
+                // Start animation
+                animate();
+            }
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </body>
 </html>
